@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Chatbot in PHP</title>
-    <!-- <link href="css/style.css"  rel="stylesheet" />-->
-    <link href="style.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="title">Simple Online Chatbot</div>
-      <div class="form">
-        <div class="bot-inbox inbox">
-          <div class="icon">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="msg-header">
-            <p>Hello there, how can i help you?</p>
-          </div>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Chatbot in PHP</title>
+  <!-- <link href="css/style.css"  rel="stylesheet" />-->
+  <link href="style.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="title">Simple Online Chatbot</div>
+    <div class="form">
+      <div class="bot-inbox inbox">
+
         <div class="user-inbox inbox">
           <div class="msg-header">
             <p>Hi, I'm a message sender.</p>
@@ -38,10 +34,10 @@
 
     <!-- <div class="user-inbox inbox"> <div class="msg-header"><p>Hi, I'm a message sender</p></div></div> -->
     <script>
-      $(document).ready(function(){
-        $("#send-btn").on("click", function(){
+      $(document).ready(function() {
+        $("#send-btn").on("click", function() {
           $value = $('#data').val();
-          $msg =  '<div class="user-inbox inbox"> <div class="msg-header"><p>' + $value +'</p></div></div>';
+          $msg = '<div class="user-inbox inbox"> <div class="msg-header"><p>' + $value + '</p></div></div>';
           $(".  form").append($msg);
           $('#data').val('');
 
@@ -49,13 +45,16 @@
           $.ajax({
             url: 'message.php',
             type: 'POST',
-            data: 'text ='+$value,
-            success: function(result){
-              
+            data: 'text=' + $value,
+            success: function(result) {
+              $reply = '<div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p>' + result + '</p></div></div>'
+              $(".form").append($reply);
+              $(".form").scrollTop($(".form"[0].scrollHeight));
             }
           })
         });
       });
     </script>
-  </body>
+</body>
+
 </html>
